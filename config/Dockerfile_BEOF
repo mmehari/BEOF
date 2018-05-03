@@ -1,0 +1,18 @@
+FROM ubuntu
+
+# Update the repository
+RUN apt-get update
+
+# Install dependancy packages
+RUN apt-get -y install make gcc net-tools iw iputils-ping nano sudo git psmisc netcat-openbsd bc curl rpcbind ptpd findutils mount util-linux sysvinit-utils bridge-utils hostapd wpasupplicant
+
+# Clone BEOF package
+RUN cd /root && git clone https://github.com/mmehari/BEOF
+
+# Compile EC and RC binaries
+RUN cd /root/BEOF/exec/EC && make clean && make
+RUN cd /root/BEOF/exec/RC && make clean && make && make install
+
+# Start RC service
+ENTRYPOINT service RC start && /bin/bash
+

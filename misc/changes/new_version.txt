@@ -1,0 +1,14 @@
+1. change to exec_WR such that all EC will log all RC reply messages.
+2. "echo PASSED" message is now send to GROUP_ALL rather than indicidually to each node.
+3. EMOV.html updated to included EC END_MSG replies from all RCs
+4. IP_IF_to_MAC function to convert IP interface to MAC added
+5. "system functions" section is brought before "user section: variables" sections
+6. EC to RC ssh timeout addeded
+7. OEMV path displayed to execution output screen
+8. NTP_SERVER parameter is removed. All RCs will sync to the EC NTP and not to external NTP server.
+
+
+acknowlegment
+1. icons by Sekkyumu http://sekkyumu.deviantart.com/art/Developpers-Icons-63052312
+2. SyntaxHighlighter by Alex Gorbatchev http://alexgorbatchev.com/SyntaxHighlighter
+3. dynamic tables from dynatable by	http://

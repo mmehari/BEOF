@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><!-- saved from url=(0066)https://help.ubuntu.com/12.04/serverguide/network-file-system.html -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Network File System (NFS)</title>
+
+
+<link rel="stylesheet" type="text/css" href="./Network%20File%20System%20%28NFS%29_files/en.css">
+<script type="text/javascript" src="./Network%20File%20System%20%28NFS%29_files/jquery.js"></script><script type="text/javascript" src="./Network%20File%20System%20%28NFS%29_files/jquery.syntax.js"></script><script type="text/javascript" src="./Network%20File%20System%20%28NFS%29_files/yelp.js"></script>
+<script>window["_GOOG_TRANS_EXT_VER"] = "1";</script></head><body id="home">
+<script src="./Network%20File%20System%20%28NFS%29_files/urchin.js" type="text/javascript"></script><div id="leftbanner"></div>
+
+<div id="container">&nbsp; <br>
+<div class="hgroup">
+<h1 class="title">Network File System (NFS)</h1>
+</div>
+
+
+<div class="contents">
+<p class="para">
+          NFS allows a system to share directories and files with others
+          over a network. By using NFS, users and programs can access
+          files on remote systems almost as if they were local files.
+          </p>
+<p class="para">
+          Some of the most notable benefits that NFS can provide are:
+          </p>
+<div class="list itemizedlist"><ul class="list itemizedlist"><li class="list itemizedlist">
+      <p class="para">Local workstations use less disk space because commonly used data
+can be stored on a single machine and still remain accessible to others
+over the network.</p>
+          </li><li class="list itemizedlist">
+      <p class="para">There is no need for users to have separate home directories on
+every network machine. Home directories could be set up on the NFS
+server and made available throughout the network.</p>
+          </li><li class="list itemizedlist">
+
+      <p class="para">Storage devices such as floppy disks, CDROM drives, and USB
+Thumb drives can be used by other machines on the network. This may
+reduce the number of removable media drives throughout the
+network.</p>
+          </li></ul></div>
+</div>
+
+<div class="links sectionlinks"><ul><li class="links"><a class="xref" href="https://help.ubuntu.com/12.04/serverguide/network-file-system.html#nfs-installation" title="Installation">Installation</a></li><li class="links"><a class="xref" href="https://help.ubuntu.com/12.04/serverguide/network-file-system.html#nfs-configuration" title="Configuration">Configuration</a></li><li class="links"><a class="xref" href="https://help.ubuntu.com/12.04/serverguide/network-file-system.html#nfs-client-configuration" title="NFS Client Configuration">NFS Client Configuration</a></li><li class="links"><a class="xref" href="https://help.ubuntu.com/12.04/serverguide/network-file-system.html#nfs-references" title="References">References</a></li></ul></div>
+
+<div class="sect2 sect" id="nfs-installation"><div class="inner">
+<div class="hgroup"><h2 class="title">Installation</h2></div>
+<div class="region"><div class="contents">
+<p class="para">
+          At a terminal prompt enter the following command to install the NFS
+          Server:
+          </p>
+<p class="para">
+</p><div class="screen"><pre class="contents"><span class="cmd command">sudo apt-get install nfs-kernel-server</span>
+</pre></div>
+          
+</div></div>
+</div></div>
+
+<div class="sect2 sect" id="nfs-configuration"><div class="inner">
+<div class="hgroup"><h2 class="title">Configuration</h2></div>
+<div class="region"><div class="contents">
+<p class="para">
+          You can configure the directories to be exported by adding them to
+          the <span class="file filename">/etc/exports</span> file. For example:
+          </p>
+<p class="para">
+</p><div class="screen"><pre class="contents">/ubuntu  *(ro,sync,no_root_squash)<br>/home    *(rw,sync,no_root_squash)<br></pre></div>
+          
+<p class="para">
+          You can replace * with one of the hostname formats. Make the
+          hostname declaration as specific as possible so unwanted
+          systems cannot access the NFS mount.
+          </p>
+<p class="para">
+          To start the NFS server, you can run the following command at a terminal prompt:
+          </p>
+<p class="para">
+</p><div class="screen"><pre class="contents"><span class="cmd command">sudo /etc/init.d/nfs-kernel-server start</span>
+</pre></div>
+          
+</div></div>
+</div></div>
+
+
+<div class="hgroup"><h2 class="title">NFS Client Configuration</h2></div>
+
+
+<p class="para">
+          Use the <span class="app application">mount</span> command to mount a shared NFS directory from
+          another machine, by typing a command line similar to the following at a terminal prompt:
+          </p>
+
+<p class="para">
+</p>
+<div class="screen"><pre class="contents"><span class="cmd command">sudo mount example.hostname.com:/ubuntu /local/ubuntu</span>
+</pre></div>
+
+
+<div class="note note-warning" title="Warning"><div class="inner"><div class="region"><div class="contents">
+      <p class="para">
+      The mount point directory <span class="file filename">/local/ubuntu</span> must
+      exist. There should be no files or subdirectories in the
+      <span class="file filename">/local/ubuntu</span> directory.
+      </p>
+      </div></div></div></div>
+
+<p class="para">
+       An alternate way to mount an NFS share from another machine is to
+       add a line to the <span class="file filename">/etc/fstab</span> file. The line must state the
+       hostname of the NFS server, the directory on the server being
+       exported, and the directory on the local machine where the NFS
+       share is to be mounted.
+      </p>
+
+<p class="para">
+      The general syntax for the line in <span class="file filename">/etc/fstab</span>
+      file is as follows:
+      </p>
+
+<p class="para">
+</p>
+<div class="code"><pre class="contents">example.hostname.com:/ubuntu /local/ubuntu nfs rsize=8192,wsize=8192,timeo=14,intr<br></pre></div>
+
+      
+<p class="para">
+          If you have trouble mounting an NFS share, make sure the <span class="app application">nfs-common</span> package is 
+          installed on your client.  To install
+          <span class="app application">nfs-common</span> enter the following
+          command at the terminal
+          prompt:
+</p>
+<div class="screen"><pre class="contents"><span class="cmd command">sudo apt-get install nfs-common</span>
+</pre></div>
+</div>
+
+
+</body></html>

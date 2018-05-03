@@ -1,0 +1,67 @@
+#!/bin/sh
+
+### BEGIN INIT INFO
+# Provides:		RC
+# Required-Start:	$remote_fs
+# Required-Stop:	$remote_fs
+# Should-Start:		$network
+# Should-Stop:
+# Default-Start:	2 3 4 5
+# Default-Stop:		0 1 6
+# Short-Description:	Resource Controller
+# Description:		Resource Controller implementation
+### END INIT INFO
+
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+DESC="BEOF RC"
+NAME=RC
+DAEMON=/usr/local/bin/$NAME
+PIDFILE=/var/run/$NAME.pid
+SCRIPTNAME=/etc/init.d/$NAME
+
+# Exit if the package is not installed
+[ -x "$DAEMON" ] || exit 0
+
+# Read configuration variable file if it is present
+[ -r /etc/default/$NAME ] && . /etc/default/$NAME
+
+DAEMON_OPTS="-l $PIDFILE"
+
+# Load the VERBOSE setting and other rcS variables
+. /lib/init/vars.sh
+
+# Define LSB log_* functions.
+. /lib/lsb/init-functions
+
+case "$1" in
+  start)
+	log_daemon_msg "Starting $DESC"
+	start-stop-daemon --start --oknodo --quiet --exec "$DAEMON" --pidfile "$PIDFILE" -- $DAEMON_OPTS >/dev/null
+	log_end_msg "$?"
+	;;
+  stop)
+	log_daemon_msg "Stopping $DESC"
+	start-stop-daemon --stop --oknodo --quiet --exec "$DAEMON" --pidfile "$PIDFILE"
+	log_end_msg "$?"
+	;;
+  reload)
+  	log_daemon_msg "Reloading $DESC"
+	start-stop-daemon --stop --signal HUP --exec "$DAEMON" --pidfile "$PIDFILE"
+	log_end_msg "$?"
+	;;
+  restart|force-reload)
+  	$0 stop
+	sleep 1
+	$0 start
+	;;
+  status)
+	status_of_proc "$DAEMON" "$NAME"
+	exit $?
+	;;
+  *)
+	echo "Usage: $SCRIPTNAME {start|stop|restart|force-reload|reload|status}" >&2
+	exit 1
+	;;
+esac
+
+exit 0

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en"><head><!-- saved from url=(0068)http://injustfiveminutes.com/2013/03/13/fixing-ssh-login-long-delay/ --><!--<![endif]-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width"><title>Fixing SSH login long delay | In just five minutes…</title>
+
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="stylesheet" type="text/css" media="all" href="./Fixing+SSH+login+long+delay+++In+just+five+minutes%E2%80%A6_files/style.css">
+<link rel="pingback" href="http://injustfiveminutes.com/xmlrpc.php"><!--[if lt IE 9]>
+<script src="http://s2.wp.com/wp-content/themes/pub/twentyeleven/js/html5.js?m=1394055389g" type="text/javascript"></script>
+<![endif]-->
+
+<meta name="google-site-verification" content="PrHpcNbbnjzsDCd7P-QqY61-7vNfzg3SXz20-b6peYA">
+<meta name="msvalidate.01" content="3901E7A1E8DE9DAFBBB74455993FE6CA">
+		<script type="text/javascript" async="" src="./Fixing+SSH+login+long+delay+++In+just+five+minutes%E2%80%A6_files/wl"></script><script src="./Fixing+SSH+login+long+delay+++In+just+five+minutes%E2%80%A6_files/remote-login.php" type="text/javascript"></script>
+		<script type="text/javascript">
+		/* <![CDATA[ */
+			if ( 'function' === typeof WPRemoteLogin ) {
+				document.cookie = "wordpress_test_cookie=test; path=/";
+				if ( document.cookie.match( /(;|^)\s*wordpress_test_cookie\=/ ) ) {
+					WPRemoteLogin();
+				}
+			}
+		/* ]]> */
+		</script>
+		<link rel="alternate" type="application/rss+xml" title="In just five minutes... » Feed" href="http://injustfiveminutes.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="In just five minutes... » Comments Feed" href="http://injustfiveminutes.com/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="In just five minutes... » Fixing SSH login long&nbsp;delay Comments Feed" href="http://injustfiveminutes.com/2013/03/13/fixing-ssh-login-long-delay/feed/">
+<script type="text/javascript">
+/* <![CDATA[ */
+function addLoadEvent(func){var oldonload=window.onload;if(typeof window.onload!='function'){window.onload=func;}else{window.onload=function(){oldonload();func();}}}
+/* ]]> */
+</script>
+<link rel="stylesheet" id="all-css-0" href="./Fixing+SSH+login+long+delay+++In+just+five+minutes%E2%80%A6_files/saved_resource" type="text/css" media="all">
+<script type="text/javascript">
+/* <![CDATA[ */
+var LoggedOutFollow = {"invalid_email":"Your subscription did not succeed, please try again with a valid email address."};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Fixing+SSH+login+long+delay+++In+just+five+minutes%E2%80%A6_files/saved_resource%281%29"></script>
+<link rel="stylesheet" id="all-css-0" href="./Fixing+SSH+login+long+delay+++In+just+five+minutes%E2%80%A6_files/style%281%29.css" type="text/css" media="all"><!--[if lt IE 8]>
+<link rel='stylesheet' id='highlander-comments-ie7-css'  href='http://s2.wp.com/wp-content/mu-plugins/highlander-comments/style-ie7.css?m=1351637563g&#038;ver=20110606' type='text/css' media='all' />
+<![endif]-->
+
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://injustfiveminutes.wordpress.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://injustfiveminutes.wordpress.com/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="Unresponsive TOAD for MySQL after a long time of&nbsp;inactivity" href="http://injustfiveminutes.com/2013/03/12/unresponsive-toad-for-mysql-after-a-long-time-of-inactivity/">
+<link rel="next" title="Find Files that were modified or are being&nbsp;written" href="http://injustfiveminutes.com/2013/03/27/find-files-that-are-modified-or-being-written/">
+<meta name="generator" content="WordPress.com">
+<link rel="canonical" href="./Fixing+SSH+login+long+delay+++In+just+five+minutes%E2%80%A6_files/Fixing+SSH+login+long+delay+++In+just+five+minutes%E2%80%A6.html">
+<link rel="shortlink" href="http://wp.me/p2My3B-5o">
+<link rel="alternate" type="application/json+oembed" href="http://public-api.wordpress.com/oembed/1.0/?format=json&amp;url=http%3A%2F%2Finjustfiveminutes.com%2F2013%2F03%2F13%2Ffixing-ssh-login-long-delay%2F&amp;for=wpcom-auto-discovery"><link rel="alternate" type="application/xml+oembed" href="http://public-api.wordpress.com/oembed/1.0/?format=xml&amp;url=http%3A%2F%2Finjustfiveminutes.com%2F2013%2F03%2F13%2Ffixing-ssh-login-long-delay%2F&amp;for=wpcom-auto-discovery"><!-- Jetpack Open Graph Tags -->
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Fixing SSH login long delay">
+<meta property="og:url" content="http://injustfiveminutes.com/2013/03/13/fixing-ssh-login-long-delay/">
+<meta property="og:description" content="For a long time I had a problem with ssh login on a Redhat 6 server – it was taking too long to connect to it, around 30 seconds. Normally it hasn't been a big issue – after all, you connect once a...">
+<meta property="article:published_time" content="2013-03-13T13:24:01+00:00">
+<meta property="article:modified_time" content="2013-03-13T13:28:02+00:00">
+<meta property="article:author" content="http://injustfiveminutes.com/author/luiseterc/">
+<meta property="og:site_name" content="In just five minutes...">
+<meta property="og:image" content="http://wordpress.com/i/blank.jpg?m=1383295312g">
+<meta name="twitter:site" content="@wordpressdotcom">
+<meta name="twitter:card" content="summary">
+<meta property="article:publisher" content="https://www.facebook.com/WordPresscom">
+<link rel="shortcut icon" type="image/x-icon" href="http://s2.wp.com/i/favicon.ico?m=1311975824g" sizes="16x16 24x24 32x32 48x48">
+<link rel="icon" type="image/x-icon" href="http://s2.wp.com/i/favicon.ico?m=1311975824g" sizes="16x16 24x24 32x32 48x48">
+<link rel="apple-touch-icon-precomposed" href="http://s0.wp.com/i/webclip.png?m=1391188133g">
+<link rel="openid.server" href="http://injustfiveminutes.wordpress.com/?openidserver=1">
+<link rel="openid.delegate" href="http://injustfiveminutes.wordpress.com/">
+<link rel="search" type="application/opensearchdescription+xml" href="http://injustfiveminutes.com/osd.xml" title="In just five minutes...">
+<link rel="search" type="application/opensearchdescription+xml" href="http://wordpress.com/opensearch.xml" title="WordPress.com">
+<meta name="application-name" content="In just five minutes..."><meta name="msapplication-window" content="width=device-width;height=device-height"><meta name="msapplication-tooltip" content="SHORT TECHNICAL ARTICLES ABOUT TROUBLESHOOTING IN SOFTWARE DEVELOPMENT AND SYSTEMS ADMINISTRATION"><meta name="msapplication-task" content="name=Subscribe;action-uri=http://injustfiveminutes.com/feed/;icon-uri=http://s2.wp.com/i/favicon.ico"><meta name="msapplication-task" content="name=Sign up for a free blog;action-uri=http://wordpress.com/signup/;icon-uri=http://s2.wp.com/i/favicon.ico"><meta name="msapplication-task" content="name=WordPress.com Support;action-uri=http://support.wordpress.com/;icon-uri=http://s2.wp.com/i/favicon.ico"><meta name="msapplication-task" content="name=WordPress.com Forums;action-uri=http://forums.wordpress.com/;icon-uri=http://s2.wp.com/i/favicon.ico"><meta name="title" content="Fixing SSH login long&nbsp;delay | In just five minutes... on WordPress.com">
+<meta name="description" content="For a long time I had a problem with ssh login on a Redhat 6 server – it was taking too long to connect to it, around 30 seconds. Normally it hasn't been a big issue – after all, you connect once and work for all day as long as you enable server keepalive packets…">
+
+<script type="text/javascript" src="./Fixing+SSH+login+long+delay+++In+just+five+minutes%E2%80%A6_files/google_service.js">
+</script>
+<script type="text/javascript">
+if ( typeof GS_googleAddAdSenseService == 'function' ) { GS_googleAddAdSenseService("ca-pub-3443918307802676"); }
+if ( typeof GS_googleEnableAllServices == 'function' ) { GS_googleEnableAllServices() };
+</script><script src="./Fixing+SSH+login+long+delay+++In+just+five+minutes%E2%80%A6_files/google_ads.js"></script><script type="text/javascript">
+if ( typeof GA_googleAddSlot == 'function' ) { GA_googleAddSlot("ca-pub-3443918307802676", "wpcom_below_post"); }
+</script>
+<script type="text/javascript">
+if ( typeof GA_googleFetchAds == 'function' ) { GA_googleFetchAds(); }
+</script>
+
+<script type="text/javascript">
+var wpcom_ads = { bid: 41123335, pt: 'permalink', wa: 0, as: 0, domain: 'injustfiveminutes.com', url: 'http://injustfiveminutes.com/2013/03/13/fixing-ssh-login-long-delay/', gid: '', };
+</script>
+<style type="text/css" id="syntaxhighlighteranchor"></style>
+<script type="text/javascript">
+	window.google_analytics_uacct = "UA-52447-2";
+</script>
+
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-52447-2']);
+	_gaq.push(['_setDomainName', 'none']);
+	_gaq.push(['_setAllowLinker', true]);
+	_gaq.push(['_initData']);
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+	})();
+</script><script type="text/javascript" async="" src="./Fixing+SSH+login+long+delay+++In+just+five+minutes%E2%80%A6_files/ga.js"></script>
+<script type="text/javascript" src="./Fixing+SSH+login+long+delay+++In+just+five+minutes%E2%80%A6_files/osd.js"></script><script type="text/javascript" async="" src="./Fixing+SSH+login+long+delay+++In+just+five+minutes%E2%80%A6_files/saved_resource%282%29"></script><script>window["_GOOG_TRANS_EXT_VER"] = "1";</script><style type="text/css">
+div.wpa>div { margin-top: 1em; } #google_ads_div_wpcom_below_post_adsafe_ad_container { display: block !important; }
+</style></head><body class="single single-post postid-334 single-format-standard mp6 single-author singular two-column right-sidebar no-svg highlander-enabled highlander-light" style="">
+<h1 class="entry-title">Fixing SSH login long&nbsp;delay</h1>
+
+<p>For a long time I had a problem with ssh login on a Redhat 6 server
+– it was taking too long to connect to it, around 30 seconds. Normally
+it hasn’t been a big issue – after all, you connect once and work for
+all day as long as you <a href="https://injustfiveminutes.wordpress.com/2012/10/29/ssh-connection-timeouts/" sl-processed="1">enable server keepalive packets</a> to avoid session timeout.</p>
+
+<p>However when it comes to work with SFTP o GIT it might become
+annoying. Everytime you sFTP upload or&nbsp; git push you have to wait 30
+seconds again.</p>
+
+<p>This kind of problems are often related to DNS issues but this is not always the case. Following are the most common solutions:</p>
+
+<h1>1. Disable reverse IP resolution on SSH server</h1>
+
+<p>It turns out there is a setting in OpenSSH that controls whether
+SSHd should not only resolve remote host names but also check whether
+the resolved host names map back to remote IPs. Apparently, that
+setting is enabled by default in OpenSSH. The directive <strong>UseDNS</strong>
+controls this particular behaviour of OpenSSH, and while it is
+commented in sshd_config (which is the default configuration file for
+the OpenSSH daemon in most enviornments), as per the man page for
+sshd_config, the default for <strong>UseDNS</strong> is set to enabled. Add the following line:</p>
+
+<pre><strong>UseDNS no</strong></pre>
+
+<h1>2. DNS resolver fix for IPv4/IPv6 enabled stacks</h1>
+
+<p>It’s a known issue on the Red Hat knowledgebase article&nbsp;<a href="https://access.redhat.com/kb/docs/DOC-58626" sl-processed="1">DOC-58626</a>, but since it’s closed without login, I’ll share the solution below:</p>
+
+<p style="padding-left: 30px;"><code>The resolver uses the same socket
+for the A and AAAA requests. Some hardware mistakenly only sends back
+one reply. When that happens the client sytem will sit and wait for the
+second reply. Turning this option on changes this behavior so that if
+two requests from the same port are not handled correctly it will close
+the socket and open a new one before sending the second request.</code></p>
+
+<p>The solution is to add the following line to your <strong>/etc/resolv.conf</strong>. Just add it all the way at the bottom, as the last line.</p>
+
+<pre><strong>options single-request-reopen</strong></pre>
+
+<h1>3. Disable GSSAPI authentication method</h1>
+
+<p>OpenSSH server enables by default the<a href="http://www.sxw.org.uk/computing/patches/openssh.html" sl-processed="1"> GSSAPI key exchange</a>
+which allows you to leverage an existing key management infrastructure
+such as Kerberos or GSI, instead of having to distribute ssh host keys
+throughout your organisation. With GSSAPI key exchange servers do not
+need ssh host keys when being accessed by clients with valid
+credentials.</p>
+
+<p>If you are not using GSSAPI as a authentication mecanism, it might be causing this connection delay.</p>
+
+<p>In my particular case, I ran <tt>ssh -v myserver</tt> to find out that it was hanging whilst attempting to authenticate with GSSAPI, with the slow section looking like:</p>
+
+<pre>....<br>....<br>debug2: key: /home/user/.ssh/id_rsa (0xb961d7a8)<br>debug2: key: /home/user/.ssh/id_dsa ((nil))<br>debug2: key: /home/user/.ssh/id_ecdsa ((nil))<br>debug1: Authentications that can continue: publickey,gssapi-keyex,gssapi-with-mic,password<br>debug3: start over, passed a different list publickey,gssapi-keyex,gssapi-with-mic,password<br>debug3: preferred gssapi-keyex,gssapi-with-mic,publickey,keyboard-interactive,password<br>debug3: authmethod_lookup gssapi-keyex<br>debug3: remaining preferred: gssapi-with-mic,publickey,keyboard-interactive,password<br>debug3: authmethod_is_enabled gssapi-keyex<br>debug1: Next authentication method: gssapi-keyex<br>debug1: No valid Key exchange context<br>debug2: we did not send a packet, disable method<br>debug3: authmethod_lookup gssapi-with-mic<br>debug3: remaining preferred: publickey,keyboard-interactive,password<br>debug3: authmethod_is_enabled gssapi-with-mic<br>debug1: Next authentication method: gssapi-with-mic<br>debug1: Unspecified GSS failure.  Minor code may provide more information<br>Credentials cache file '/tmp/krb5cc_1000' not found<br><br>debug1: Unspecified GSS failure.  Minor code may provide more information<br>Credentials cache file '/tmp/krb5cc_1000' not found<br><br>debug1: Unspecified GSS failure.  Minor code may provide more information</pre>
+
+<p>Turned out that it was stalling after trying gssapi-with-mic
+authentication method. Had several “Unspecified GSS failure” messages
+with several seconds delay between them, therefore it was definitely
+the root cause of long delays.</p>
+
+<p>The fix is simple – disable attempts to use GSS-API by adding the
+following to /etc/sshd_config (server side) or yout ~/.ssh/ssh_config
+(client side).</p>
+
+<pre><strong>GSSAPIAuthentication no</strong></pre>
+
+<p>There is an easy way to check beforehand whether this solution will
+work. Try to ssh into your server by disabling GSSAPI authentication:</p>
+
+<pre><strong>ssh -o GSSAPIAuthentication=no user@yourserver</strong></pre>
+</body></html>

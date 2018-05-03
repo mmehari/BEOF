@@ -1,0 +1,93 @@
+┌─────────────┐
+│ New feature │
+└─────────────┘
+Wi-Fi IP address configuration is added to a group composed of more than one node. A list of all nodes' Wi-Fi IP should be concatenated with ',' separator.
+
+Example
+───────
+declare -A GROUP_CLIENT=(
+	[IF]="wlan0:wlan1"
+	[MODE]="managed:managed"
+	[HW_MODE]="a:g"
+	[CHANNEL]="36:4"
+	[ESSID]="myssid:myssid2"
+	[TX_POWER]="20:20"
+	[WIFI_IP]="192.168.10.4,192.168.10.5:192.168.10.6,192.168.10.7"
+	[ENET_IP]="10.11.16.4,10.11.16.5"
+	[MCT_ADDR]=$(eval echo $RAND_MCT_ADDR)
+)
+
+wlan0 interface for nodes having IPs 10.11.16.4 and 10.11.16.5 will have 192.168.10.4 and 192.168.10.5 Wi-Fi IP addresses respectively. Similarly,
+wlan1 interface for nodes having IPs 10.11.16.4 and 10.11.16.5 will have 192.168.10.6 and 192.168.10.7 Wi-Fi IP addresses respectively.
+
+date : Feb 25, 2014
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+┌─────────────┐
+│ Improvement │
+└─────────────┘
+Definition of GROUP_ALL NAME parameter is changed from space separated to comma separated values
+
+Example
+───────
+	┌─────┐							┌─────┐
+	│ OLD │							│ NEW │
+	└─────┘							└─────┘
+declare -A GROUP_ALL=(					declare -A GROUP_ALL=(
+	[ENET_IP]="xxxx,xxxx,xxxx,xxxx"				[ENET_IP]="xxxx,xxxx,xxxx,xxxx"
+	[NAME]="SERVER CLIENT INT1 INT2"			[NAME]="SERVER,CLIENT,INT1,INT2"
+)
+
+date : Feb 25, 2014
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+┌─────────────┐
+│ New feature │
+└─────────────┘
+Multicast address added to the GROUP_ALL associative array. Sometimes it becomes important to address all RCs, e.g. for time synchronization, so that all RC nodes can be reached at once.
+
+Example
+───────
+	┌─────┐							┌─────┐
+	│ OLD │							│ NEW │
+	└─────┘							└─────┘
+declare -A GROUP_ALL=(					declare -A GROUP_ALL=(
+	[ENET_IP]="xxxx,xxxx,xxxx,xxxx"				[ENET_IP]="xxxx,xxxx,xxxx,xxxx"
+								[MCT_ADDR]=$(eval echo $RAND_MCT_ADDR)
+	[NAME]="xxxx,xxxx,xxxx,xxxx"				[NAME]="xxxx,xxxx,xxxx,xxxx"
+)
+
+date : March 2, 2014
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+┌─────────────┐
+│ Improvement │
+└─────────────┘
+Tunable system global variables are brought from the file global_var.sh to user space script.
+
+Example
+───────
+┌─────┐	
+│ OLD │
+└─────┘	
+BEOF_DIR="/path/to/BEOF/dir"
+
+source $BEOF_DIR/global_var.sh
+
+┌─────┐
+│ NEW │
+└─────┘
+BEOF_DIR="/path/to/BEOF/dir"
+
+HOST_EC="10.11.**.**"
+PORT_EC=8800
+PORT_RC=8000
+USER_RC="******"
+EC_RECV_SOCK_TIMEOUT=5		# Maximum amount of time (second) the EC will wait for RC results during exec_WR call
+RC_START_RETRIES=3		# Maximum number of RC connection retries incase of failure
+SYNC_CLOCKS=true		# true = turn ON, false = turn OFF synchronization
+SYNC_RATE=10			# rate of synchronization in seconds
+EC_CTRL_IF="eth0"		# EC Control interface where message orchestration is carried out
+RC_CTRL_IF="eth0"		# RC Control interface where message orchestration is carried out
+
+source $BEOF_DIR/global_var.sh
+
+date : March 9, 2014
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
