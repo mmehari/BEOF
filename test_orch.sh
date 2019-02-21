@@ -22,42 +22,48 @@ for (( i = 0 ; i < ${#EC_apt_name[@]} ; i++ )) do
 		sudo apt-get -y install ${EC_apt_name[$i]}
 	fi
 done
-# Check for nfs server program
-if ! dpkg -l | grep "ii  nfs-kernel-server " > /dev/null; then
-	echo -e "${LRed}ERROR${NC}: Install nfs-kernel-server tool on EC. After installation, issue the following commands"
-	echo "$ sudo su"
-	echo "$ echo \"$BEOF_DIR/tmp *(rw,sync,no_root_squash,no_subtree_check)\" >> /etc/exports"
-	echo "$ echo \"$BEOF_DIR/config *(rw,sync,no_root_squash,no_subtree_check)\" >> /etc/exports"
-	echo "$ echo \"$BEOF_DIR/exec *(rw,sync,no_root_squash,no_subtree_check)\" >> /etc/exports"
-	echo "$ exportfs -rav"
-	echo "$ service nfs-kernel-server restart"
-	exit
-fi
-# Make sure EC [tmp, config and exec] directories are NFS exported
-exported_DIRs=( $(cat /var/lib/nfs/etab | cut -d$'\t' -f1) )
-if ! $(elementExists "$BEOF_DIR/tmp" exported_DIRs) ; then
-	echo -e "${LRed}ERROR${NC}: $BEOF_DIR/tmp directory is not NFS exported. Issue the following commands to export it"
-	echo "$ sudo su"
-	echo "$ echo \"$BEOF_DIR/tmp *(rw,sync,no_root_squash,no_subtree_check)\" >> /etc/exports"
-	echo "$ exportfs -rav"
-	echo "$ service nfs-kernel-server restart"
-	exit
-fi
-if ! $(elementExists "$BEOF_DIR/config" exported_DIRs) ; then
-	echo -e "${LRed}ERROR${NC}: $BEOF_DIR/config directory is not NFS exported. Issue the following commands to export it"
-	echo "$ sudo su"
-	echo "$ echo \"$BEOF_DIR/config *(rw,sync,no_root_squash,no_subtree_check)\" >> /etc/exports"
-	echo "$ exportfs -rav"
-	echo "$ service nfs-kernel-server restart"
-	exit
-fi
-if ! $(elementExists "$BEOF_DIR/exec" exported_DIRs) ; then
-	echo -e "${LRed}ERROR${NC}: $BEOF_DIR/exec directory is not NFS exported. Issue the following commands to export it"
-	echo "$ sudo su"
-	echo "$ echo \"$BEOF_DIR/exec *(rw,sync,no_root_squash,no_subtree_check)\" >> /etc/exports"
-	echo "$ exportfs -rav"
-	echo "$ service nfs-kernel-server restart"
-	exit
+
+# Make sure we are not working inside a docker container
+if [ ! -f /.dockerenv ]; then
+
+	# Check for nfs server program
+	if ! dpkg -l | grep "ii  nfs-kernel-server " > /dev/null; then
+		echo -e "${LRed}ERROR${NC}: Install nfs-kernel-server tool on EC. After installation, issue the following commands"
+		echo "sudo su"
+		echo "echo \"$BEOF_DIR/tmp *(rw,sync,no_root_squash,no_subtree_check)\" >> /etc/exports"
+		echo "echo \"$BEOF_DIR/config *(rw,sync,no_root_squash,no_subtree_check)\" >> /etc/exports"
+		echo "echo \"$BEOF_DIR/exec *(rw,sync,no_root_squash,no_subtree_check)\" >> /etc/exports"
+		echo "exportfs -rav"
+		echo "service nfs-kernel-server restart"
+		exit
+	fi
+	# Make sure EC [tmp, config and exec] directories are NFS exported
+	exported_DIRs=( $(cat /var/lib/nfs/etab | cut -d$'\t' -f1) )
+	if ! $(elementExists "$BEOF_DIR/tmp" exported_DIRs) ; then
+		echo -e "${LRed}ERROR${NC}: $BEOF_DIR/tmp directory is not NFS exported. Issue the following commands to export it"
+		echo "sudo su"
+		echo "echo \"$BEOF_DIR/tmp *(rw,sync,no_root_squash,no_subtree_check)\" >> /etc/exports"
+		echo "exportfs -rav"
+		echo "service nfs-kernel-server restart"
+		exit
+	fi
+	if ! $(elementExists "$BEOF_DIR/config" exported_DIRs) ; then
+		echo -e "${LRed}ERROR${NC}: $BEOF_DIR/config directory is not NFS exported. Issue the following commands to export it"
+		echo "sudo su"
+		echo "echo \"$BEOF_DIR/config *(rw,sync,no_root_squash,no_subtree_check)\" >> /etc/exports"
+		echo "exportfs -rav"
+		echo "service nfs-kernel-server restart"
+		exit
+	fi
+	if ! $(elementExists "$BEOF_DIR/exec" exported_DIRs) ; then
+		echo -e "${LRed}ERROR${NC}: $BEOF_DIR/exec directory is not NFS exported. Issue the following commands to export it"
+		echo "sudo su"
+		echo "echo \"$BEOF_DIR/exec *(rw,sync,no_root_squash,no_subtree_check)\" >> /etc/exports"
+		echo "exportfs -rav"
+		echo "service nfs-kernel-server restart"
+		exit
+	fi
+
 fi
 
 # ----------------------------------------------------------------------------------------- #

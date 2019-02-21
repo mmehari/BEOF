@@ -16,11 +16,11 @@ docker build -t beof -f Dockerfile_BEOF .
 
 - Next, create 5 containers of the docker image.
 ```bash
-docker run -it --name EC  --hostname=EC  beof
-docker run -it --name RC1 --hostname=RC1 beof
-docker run -it --name RC2 --hostname=RC2 beof
-docker run -it --name RC3 --hostname=RC3 beof
-docker run -it --name RC4 --hostname=RC4 beof
+docker run -it --name EC  -v DataVolume1:/root/BEOF/config -v DataVolume2:/root/BEOF/exec -v DataVolume3:/root/BEOF/tmp --hostname=EC  beof
+docker run -it --name RC1 --volumes-from EC --hostname=RC1 beof
+docker run -it --name RC2 --volumes-from EC --hostname=RC2 beof
+docker run -it --name RC3 --volumes-from EC --hostname=RC3 beof
+docker run -it --name RC4 --volumes-from EC --hostname=RC4 beof
 ```
 
 - The resources will be used to build a ping request/reply scenario as shown below
@@ -38,7 +38,7 @@ nano /root/BEOF/expr_descr/ping_test.sh
 
 - Finally, execute [ping_test.sh](expr_descr/ping_test.sh).
 ```bash
-sh /root/BEOF/expr_descr/ping_test.sh
+/root/BEOF/expr_descr/ping_test.sh
 ```
 
 -  If everything works properly, you should get an output similar to the following
